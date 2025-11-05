@@ -1,0 +1,99 @@
+/* Container */
+.orders-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 12px;
+  min-height: 80vh;
+}
+
+.orders-container h2 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* Order card */
+.order-card {
+  background: #fafafa;
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.08);
+}
+
+.order-left {
+  width: 70%;
+}
+
+.order-left h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.order-left p {
+  margin: 6px 0;
+  color: #444;
+  font-size: 15px;
+}
+
+/* Right side controls */
+.order-right {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+/* Status badge */
+.order-status {
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Status colors */
+.status-pending {
+  background: #ffe9b3;
+  color: #b77900;
+}
+
+.status-preparing {
+  background: #c3eaff;
+  color: #006a99;
+}
+
+.status-ready {
+  background: #b4ffb4;
+  color: #0f7a0f;
+}
+
+/* Select dropdown */
+.status-dropdown {
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .order-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .order-right {
+    width: 100%;
+    align-items: flex-start;
+    margin-top: 12px;
+  }
+}

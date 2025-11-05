@@ -1,0 +1,63 @@
+.hm-dashboard {
+  padding: 40px;
+  text-align: center;
+}
+
+.hm-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.hm-table th,
+.hm-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.hm-food-thumb {
+  width: 60px;
+  height: 60px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.add-btn {
+  background: tomato;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.delete-btn {
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.top-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.orders-btn {
+  background-color: tomato;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.orders-btn:hover {
+  background-color: #006ad1;
+}
+

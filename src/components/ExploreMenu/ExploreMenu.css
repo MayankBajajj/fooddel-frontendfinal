@@ -1,0 +1,139 @@
+.explore-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 0 20px;
+  margin-top: 40px;
+}
+
+.explore-menu h1 {
+  color: #111;
+  font-weight: 600;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.explore-menu-text {
+  max-width: 70%;
+  margin: 0 auto;
+  color: #555;
+  text-align: center;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* MENU LIST */
+.explore-menu-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  text-align: center;
+  margin: 25px 0;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scroll-behavior: smooth;
+}
+
+.explore-menu-list::-webkit-scrollbar {
+  display: none;
+}
+
+.explore-menu-list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  flex: 0 0 auto;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.explore-menu-list-item:hover {
+  transform: translateY(-3px);
+}
+
+/* Image styling */
+.explore-menu-list-item img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+/* ✅ Cleaner active state */
+.explore-menu-list-item img.active {
+  border: 3px solid #000;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Text below each icon */
+.explore-menu-list-item p {
+  margin-top: 10px;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* RESPONSIVENESS */
+@media (max-width: 1024px) {
+  .explore-menu-text {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+  .explore-menu h1 {
+    font-size: 1.6rem;
+  }
+
+  .explore-menu-text {
+    max-width: 90%;
+    font-size: 0.95rem;
+  }
+
+  .explore-menu-list {
+    gap: 20px;
+  }
+
+  .explore-menu-list-item img {
+    width: 75px;
+    height: 75px;
+  }
+
+  .explore-menu-list-item p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .explore-menu {
+    padding: 0 10px;
+  }
+
+  .explore-menu h1 {
+    font-size: 1.4rem;
+  }
+
+  .explore-menu-text {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .explore-menu-list {
+    justify-content: flex-start;
+    overflow-x: scroll;
+  }
+
+  .explore-menu-list-item img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .explore-menu-list-item p {
+    font-size: 0.8rem;
+  }
+}

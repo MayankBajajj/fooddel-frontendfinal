@@ -1,0 +1,28 @@
+.add-food-container {
+  padding: 40px;
+  text-align: center;
+}
+
+.add-food-form {
+  width: 380px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.add-food-form input {
+  padding: 12px;
+  border: 1px solid lightgray;
+  border-radius: 6px;
+}
+
+.add-food-form button {
+  padding: 12px;
+  background-color: tomato;
+  color: white;
+  border-radius: 6px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}

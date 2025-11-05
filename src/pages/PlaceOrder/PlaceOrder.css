@@ -1,0 +1,137 @@
+.place-order {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  margin: 60px auto;
+  width: 90%;
+  max-width: 1200px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ---------- LEFT SECTION ---------- */
+.place-order-left {
+  flex: 1;
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.place-order-left .title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.place-order-left input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: 0.3s ease;
+}
+
+.place-order-left input:focus {
+  border-color: #ff6347;
+  outline: none;
+  box-shadow: 0 0 5px rgba(255, 99, 71, 0.4);
+}
+
+.mutli-fields,
+.multi-fields {
+  display: flex;
+  gap: 15px;
+}
+
+.mutli-fields input,
+.multi-fields input {
+  flex: 1;
+}
+
+/* ---------- RIGHT SECTION ---------- */
+.place-order-right {
+  flex: 0.8;
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.cart-total h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.cart-total-details {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  font-size: 1rem;
+}
+
+.cart-total-details p, 
+.cart-total-details b {
+  color: #444;
+}
+
+.place-order-right button {
+  width: 100%;
+  background: #ff6347;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 20px;
+}
+
+.place-order-right button:hover {
+  background: #ff3e1d;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 992px) {
+  .place-order {
+    flex-direction: column;
+    gap: 25px;
+    margin: 40px auto;
+  }
+
+  .place-order-left,
+  .place-order-right {
+    width: 100%;
+  }
+
+  .mutli-fields,
+  .multi-fields {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 576px) {
+  .place-order-left,
+  .place-order-right {
+    padding: 20px;
+  }
+
+  .place-order-left .title {
+    font-size: 1.3rem;
+  }
+
+  input {
+    font-size: 0.9rem;
+  }
+
+  .place-order-right button {
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+}

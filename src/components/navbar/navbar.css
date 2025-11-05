@@ -1,0 +1,204 @@
+/* ===== Navbar Layout ===== */
+.navbar {
+    padding: 20px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ===== Logo ===== */
+.navbar .logo {
+    height: 175px;
+    width: 200px;
+    font-weight: bolder;
+    max-width: 180px;
+    transition: transform 0.3s ease;
+    margin-top: 23px;
+}
+.navbar .logo:hover {
+    transform: scale(1.05);
+}
+
+/* ===== Menu ===== */
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    color: #49557e;
+    font-size: 18px;
+}
+.navbar li {
+    cursor: pointer;
+}
+.navbar .active {
+    padding-bottom: 2px;
+    border-bottom: 2px solid #49557e;
+}
+
+/* ===== Right Section ===== */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.navbar button {
+    background: transparent;
+    font-size: 16px;
+    color: #49557e;
+    border: 1px solid tomato;
+    padding: 10px 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.navbar button:hover {
+    background-color: #fff4f2;
+}
+
+/* ===== Search & Cart ===== */
+.navbar-search-icon {
+    position: relative;
+}
+.navbar-search-icon .dot {
+    position: absolute;
+    min-width: 10px;
+    min-height: 10px;
+    background-color: tomato;
+    border-radius: 5px;
+    top: -8px;
+    right: -8px;
+}
+
+/* ===== Cart Checkout Button ===== */
+.cart-total hr {
+    margin: 10px 0px;
+}
+.cart-total button {
+    border: none;
+    color: white;
+    background-color: tomato;
+    width: max(15vw, 200px);
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* ===== Profile Section ===== */
+.navbar-profile {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* SVG / Font Awesome Profile Icon */
+.navbar-profile svg,
+.navbar-profile i {
+    font-size: 28px; /* smaller icon size */
+    color: #49557e;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.navbar-profile:hover svg,
+.navbar-profile:hover i {
+    transform: scale(1.1);
+    color: tomato;
+}
+
+/* ===== Dropdown ===== */
+.nav-profile-dropdown {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    width: 160px;
+    padding: 8px 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    
+    /* hidden by default */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+/* Show dropdown on hover (with delay to hide) */
+.navbar-profile:hover .nav-profile-dropdown,
+.nav-profile-dropdown:hover {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* Dropdown items */
+.nav-profile-dropdown li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.nav-profile-dropdown li:hover {
+    background-color: #fff4f2;
+}
+.nav-profile-dropdown li img {
+    width: 18px;
+    height: 18px;
+}
+.nav-profile-dropdown li p {
+    margin: 0;
+    font-size: 14px;
+    color: #49557e;
+}
+.nav-profile-dropdown hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 5px 0;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 950px) {
+    .navbar-menu {
+        display: none;
+    }
+}
+.search-trigger {
+  cursor: pointer;
+}
+
+.search-bar {
+  width: 100%;
+  background: white;
+  padding: 10px 20px;
+  border-top: 1px solid #eee;
+  animation: fadeSlide 0.3s ease-in-out;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  outline: none;
+}
+
+/* Animation */
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

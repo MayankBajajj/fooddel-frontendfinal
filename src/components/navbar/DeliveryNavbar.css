@@ -1,0 +1,19 @@
+.delivery-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  padding: 12px 40px;
+  border-bottom: 1px solid #eee;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Make space for fixed navbar */
+.delivery-layout {
+  display: flex;
+  margin-top: 80px; /* ✅ Adjust based on navbar height */
+}
