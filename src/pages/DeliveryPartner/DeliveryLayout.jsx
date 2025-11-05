@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./DeliveryLayout.css";
-import DeliveryNavbar from "../../components/Navbar/DeliveryNavbar";
+import DeliveryNavbar from "../../components/NavbarTemp/DeliveryNavbar";
 import DeliverySidebar from "./DeliverySidebar";
 import DeliveryHome from "./DeliveryHome";
 import DeliveryHistory from "./DeliveryHistory";
