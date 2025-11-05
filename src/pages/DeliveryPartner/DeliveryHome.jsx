@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Delivery.css";
-import DeliveryNavbar from "../../components/navbar/DeliveryNavbar";
+import DeliveryNavbar from "../../components/Navbar/DeliveryNavbar";
 
 const DeliveryHome = () => {
   const [orders, setOrders] = useState([
