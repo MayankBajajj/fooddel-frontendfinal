@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-import Navbar from "./components/Navbar/Navbar.js";
+import Navbar from "./components/Navbar/Navbar.jsx";
 import Home from "./pages/Home/Home.jsx";
 import Cart from "./pages/Cart/Cart.jsx";
 import PlaceOrder from "./pages/PlaceOrder/PlaceOrder.jsx";
