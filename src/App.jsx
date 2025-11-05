@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-import Navbar from "./components/Navbar/Navbar";
-import Home from "./pages/Home/Home";
-import Cart from "./pages/Cart/Cart";
-import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
-import LoginPopup from "./components/LoginPopup/LoginPopup";
-import Orders from "./pages/Orders/Orders";
+import Navbar from "./components/Navbar/Navbar.jsx";
+import Home from "./pages/Home/Home.jsx";
+import Cart from "./pages/Cart/Cart.jsx";
+import PlaceOrder from "./pages/PlaceOrder/PlaceOrder.jsx";
+import LoginPopup from "./components/LoginPopup/LoginPopup.jsx";
+import Orders from "./pages/Orders/Orders.jsx";
 
 
-import DeliveryLayout from "./pages/DeliveryPartner/DeliveryLayout";
-import DeliveryHome from "./pages/DeliveryPartner/DeliveryHome";
-import DeliveryHistory from "./pages/DeliveryPartner/DeliveryHistory";
-import DeliveryProfile from "./pages/DeliveryPartner/DeliveryProfile";
-import DeliveryEarnings from "./pages/DeliveryPartner/DeliveryEarnings";
-import DeliveryLogin from "./pages/DeliveryPartner/DeliveryLogin";
+import DeliveryLayout from "./pages/DeliveryPartner/DeliveryLayout.jsx";
+import DeliveryHome from "./pages/DeliveryPartner/DeliveryHome.jsx";
+import DeliveryHistory from "./pages/DeliveryPartner/DeliveryHistory.jsx";
+import DeliveryProfile from "./pages/DeliveryPartner/DeliveryProfile.jsx";
+import DeliveryEarnings from "./pages/DeliveryPartner/DeliveryEarnings.jsx";
+import DeliveryLogin from "./pages/DeliveryPartner/DeliveryLogin.jsx";
 
-import HomeMakerLogin from "./pages/HomeMaker/HomeMakerLogin";
-import HomeMakerDashboard from "./pages/HomeMaker/HomeMakerDashboard";
-import AddFood from "./pages/HomeMaker/AddFood";
-import Order from "./pages/HomeMaker/Order";
+import HomeMakerLogin from "./pages/HomeMaker/HomeMakerLogin.jsx";
+import HomeMakerDashboard from "./pages/HomeMaker/HomeMakerDashboard.jsx";
+import AddFood from "./pages/HomeMaker/AddFood.jsx";
+import Order from "./pages/HomeMaker/Order.jsx";
 
 
 const App = () => {
