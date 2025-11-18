@@ -18,7 +18,7 @@ import DeliveryLogin from "./pages/DeliveryPartner/DeliveryLogin.jsx";
 import HomeMakerLogin from "./pages/HomeMaker/HomeMakerLogin.jsx";
 import HomeMakerDashboard from "./pages/HomeMaker/HomeMakerDashboard.jsx";
 import AddFood from "./pages/HomeMaker/AddFood.jsx";
-import Order from "./pages/HomeMaker/Order.jsx";
+import Order from "./pages/HomeMaker/HomeMakerOrder.jsx";
 
 
 const App = () => {

@@ -3,13 +3,26 @@ import axios from "axios";
 
 export const StoreContext = createContext(null);
 
+
+
+
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [food_list, setFoodList] = useState([]);
   const [token, setToken] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // 👈 added login state
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // ✅ Add loading state
+  const [promoApplied, setPromoApplied] = useState(false);
 
-  const url = "https://food-del-backend-eg8o.onrender.com"; // backend base URL
+  // ❗ Must be inside component so it can access state
+  const getFinalAmount = () => {
+    const subtotal = getTotalCartAmount();
+    const delivery = subtotal === 0 ? 0 : 2;
+    const discountedSubtotal = promoApplied ? subtotal * 0.5 : subtotal;
+    return discountedSubtotal + delivery;
+  };
+
+  const url = "https://fooddel-backendfinal.onrender.com"; // backend base URL
 
   // ✅ Add to cart with login check
   const addToCart = (itemId) => {
@@ -51,6 +64,17 @@ const StoreContextProvider = (props) => {
       if (response.data.success) {
         setFoodList(response.data.data);
         console.log("✅ Food fetched:", response.data.data);
+        
+        // Check if homeMakerId exists in food items
+        const firstFood = response.data.data[0];
+        if (firstFood) {
+          console.log("📋 Sample food item:", {
+            name: firstFood.name,
+            _id: firstFood._id,
+            homeMakerId: firstFood.homeMakerId,
+            hasHomeMakerId: !!firstFood.homeMakerId
+          });
+        }
       } else {
         console.error("Failed to fetch food list:", response.data.message);
       }
@@ -62,11 +86,20 @@ const StoreContextProvider = (props) => {
   // ✅ Load data + token on first render
   useEffect(() => {
     async function loadData() {
-      await fetchFoodList();
-      const storedToken = localStorage.getItem("token");
-      if (storedToken) {
-        setToken(storedToken);
-        setIsLoggedIn(true); // 👈 mark logged in
+      try {
+        // Load token first (synchronous)
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) {
+          setToken(storedToken);
+          setIsLoggedIn(true);
+        }
+        
+        // Then fetch food list
+        await fetchFoodList();
+      } catch (error) {
+        console.error("Error loading data:", error);
+      } finally {
+        setIsLoading(false); // ✅ Mark loading complete
       }
     }
     loadData();
@@ -88,7 +121,11 @@ const StoreContextProvider = (props) => {
     token,
     setToken,
     isLoggedIn,
-    setIsLoggedIn, // 👈 so other components (like Login/Logout) can update it
+    setIsLoggedIn,
+    isLoading, 
+    getFinalAmount,
+    promoApplied,
+   setPromoApplied
   };
 
   return (

@@ -32,6 +32,10 @@ const LoginPopup = ({ setShowLogin }) => {
       if (response.data.success) {
         setToken(response.data.token);
         localStorage.setItem("token", response.data.token);
+        // ✅ Store user data including ID
+        if (response.data.user) {
+          localStorage.setItem("user", JSON.stringify(response.data.user));
+        }
         setMessage("Login successful!");
         setShowLogin(false);
       } else {

@@ -39,7 +39,7 @@ const AddFood = () => {
 
     try {
       const response = await axios.post(
-        "https://food-del-backend-eg8o.onrender.com/api/food/add",
+        "https://fooddel-backendfinal.onrender.com/api/food/add",
         data,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
@@ -95,6 +95,8 @@ const AddFood = () => {
           placeholder="Price"
           value={formData.price}
           onChange={handleChange}
+          min="0"
+          step="0.01"
           required
         />
 

@@ -1,20 +1,29 @@
 import React, { useContext, useState } from "react";
 import "./Navbar.css";
-import { assets } from "../../../public/assets/assets";
+import { assets } from "../../assets/assets";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
 
 const Navbar = ({ setShowLogin, setSearchTerm }) => {
   const [menu, setMenu] = useState("home");
   const [showSearch, setShowSearch] = useState(false);
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
+  const [searchInput, setSearchInput] = useState(""); // Local state for input
 
-  const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
+  const { getTotalCartAmount, token, setToken, setCartItems } = useContext(StoreContext);
   const navigate = useNavigate();
   const location = useLocation();
 
   const logout = () => {
+    // Clear all user-related data from localStorage
     localStorage.removeItem("token");
+    localStorage.removeItem("user"); // ✅ Clear user data too
     setToken("");
+    
+    // Clear cart items
+    setCartItems({});
+    
+    // Navigate to home
     navigate("/");
   };
 
@@ -99,18 +108,31 @@ const Navbar = ({ setShowLogin, setSearchTerm }) => {
               Sign In
             </button>
           ) : (
-            <div className="navbar-profile">
+            <div 
+              className="navbar-profile"
+              onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+              onMouseEnter={() => setShowProfileDropdown(true)}
+              onMouseLeave={() => setShowProfileDropdown(false)}
+            >
               <img src={assets.profile_icon} alt="Profile" />
-              <ul className="nav-profile-dropdown">
-
+              <ul 
+                className={`nav-profile-dropdown ${showProfileDropdown ? 'show' : ''}`}
+                onClick={(e) => e.stopPropagation()}
+              >
                 {/* ✅ FIXED ORDERS BUTTON */}
-                <li onClick={() => navigate("/orders")}>
+                <li onClick={() => {
+                  navigate("/orders");
+                  setShowProfileDropdown(false);
+                }}>
                   <img src={assets.bag_icon} alt="" />
                   <p>Orders</p>
                 </li>
 
                 <hr />
-                <li onClick={logout}>
+                <li onClick={() => {
+                  logout();
+                  setShowProfileDropdown(false);
+                }}>
                   <img src={assets.logout_icon} alt="" />
                   <p>Logout</p>
                 </li>
@@ -134,12 +156,55 @@ const Navbar = ({ setShowLogin, setSearchTerm }) => {
       {/* Search UI */}
       {showSearch && (
         <div className="search-bar">
-          <input
-            type="text"
-            placeholder="Search for food..."
-            onChange={(e) => setSearchTerm(e.target.value)}
-            autoFocus
-          />
+          <div className="search-input-container">
+            <img src={assets.search_icon} alt="Search" className="search-input-icon" />
+            <input
+              type="text"
+              placeholder="Type food name and click Search..."
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') {
+                  // Search on Enter key
+                  setSearchTerm(searchInput);
+                  const foodSection = document.getElementById('food-display');
+                  if (foodSection) {
+                    foodSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }
+              }}
+              autoFocus
+              className="search-input-field"
+            />
+            
+            {/* Search button */}
+            <button 
+              className="search-submit-btn"
+              onClick={() => {
+                setSearchTerm(searchInput);
+                const foodSection = document.getElementById('food-display');
+                if (foodSection) {
+                  foodSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
+              aria-label="Search"
+            >
+              Search
+            </button>
+            
+            {/* Close button */}
+            <button 
+              className="search-close-btn"
+              onClick={() => {
+                setShowSearch(false);
+                setSearchTerm('');
+                setSearchInput('');
+              }}
+              aria-label="Close search"
+            >
+              ✕
+            </button>
+          </div>
         </div>
       )}
     </>

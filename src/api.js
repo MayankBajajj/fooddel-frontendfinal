@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:4000", // match your backend port
+  baseURL: "https://fooddel-backendfinal.onrender.com", // match your backend port
 });
 
 export default API;
+  

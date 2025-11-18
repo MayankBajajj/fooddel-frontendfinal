@@ -16,7 +16,7 @@ const HomeMakerLogin = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("https://food-del-backend-eg8o.onrender.com/api/homemaker/login", {
+      const response = await fetch("https://fooddel-backendfinal.onrender.com/api/homemaker/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

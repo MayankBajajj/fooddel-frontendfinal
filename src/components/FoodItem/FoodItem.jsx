@@ -1,29 +1,29 @@
 import React, { useContext } from "react";
 import "./FoodItem.css";
 import { StoreContext } from "../../context/StoreContext";
-import addIcon from "../../../public/assets/add_icon_white.png";
-import removeIcon from "../../../public/assets/remove_icon_red.png";
-import starIcon from "../../../public/assets/rating_starts.png";
+import addIcon from "../../assets/add_icon_white.png";
+import removeIcon from "../../assets/remove_icon_red.png";
+import starIcon from "../../assets/rating_starts.png";
 
-const FoodItem = ({ id, name, description, price, image }) => {
+const FoodItem = ({ id, name, description, price, image, homeMakerId }) => {
   const { url, addToCart, removeFromCart, cartItems } = useContext(StoreContext);
   const cartCount = cartItems[id] || 0;
 
-  // ✅ Handle image path safely (works for all DB formats)
-  // ✅ Correct image URL handling (covers both DB formats)
-const BASE_URL = "https://food-del-backend-eg8o.onrender.com";
+  const BASE_URL = "https://fooddel-backendfinal.onrender.com";
 
-const imageUrl = image.startsWith("/images")
-  ? `${BASE_URL}${image}` 
-  : `${BASE_URL}/images/${image}`;
+  const imageUrl = image.startsWith("/images/")
+    ? `${BASE_URL}${image}`
+    : image.startsWith("images/")
+    ? `${BASE_URL}/${image}`
+    : image.startsWith("http")
+    ? image
+    : `${BASE_URL}/images/${image}`;
 
   return (
     <div className="food-item">
       <div className="food-item-img-container">
-        {/* ✅ Dynamic image path */}
         <img src={imageUrl} alt={name} className="food-item-image" />
 
-        {/* ✅ Add / Remove Button */}
         {cartCount > 0 ? (
           <div className="food-item-counter">
             <img onClick={() => removeFromCart(id)} src={removeIcon} alt="-" />
@@ -48,6 +48,13 @@ const imageUrl = image.startsWith("/images")
 
         <p className="food-item-desc">{description}</p>
         <p className="food-item-price">₹{price}</p>
+
+        {/* ⭐ Show homemaker name if populated */}
+        {homeMakerId?.name && (
+          <p className="food-maker">
+            <strong>{homeMakerId.name}</strong>
+          </p>
+        )}
       </div>
     </div>
   );

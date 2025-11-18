@@ -3,12 +3,13 @@ import { StoreContext } from "../../context/StoreContext";
 import FoodItem from "../FoodItem/FoodItem";
 import "./FoodDisplay.css";
 
-const FoodDisplay = ({ category, searchTerm }) => {
+const FoodDisplay = ({ category, searchTerm = "" }) => {
   const { food_list } = useContext(StoreContext);
 
   return (
     <div className="food-display" id="food-display">
-      <h2>Top dishes near you</h2>
+      <h2>🍽️ Available Dishes</h2>
+      <p className="food-display-subtitle">Delicious homemade food, delivered fresh to your doorstep</p>
 
       <div className="food-display-list">
         {food_list
@@ -16,9 +17,13 @@ const FoodDisplay = ({ category, searchTerm }) => {
             const matchesCategory =
               category === "All" || item.category === category;
 
+            // ✅ Improved search - checks name, description, and category
+            const searchLower = searchTerm.toLowerCase().trim();
             const matchesSearch =
               searchTerm.trim() === "" ||
-              item.name.toLowerCase().startsWith(searchTerm.toLowerCase());
+              item.name.toLowerCase().includes(searchLower) ||
+              item.description.toLowerCase().includes(searchLower) ||
+              item.category.toLowerCase().includes(searchLower);
 
             return matchesCategory && matchesSearch;
           })
@@ -30,19 +35,32 @@ const FoodDisplay = ({ category, searchTerm }) => {
               description={item.description}
               price={item.price}
               image={item.image}
+              homeMakerId={item.homeMakerId}
             />
           ))}
       </div>
 
       {/* 🚨 Show message when nothing matches search */}
       {food_list.filter(
-        (item) =>
-          (category === "All" || item.category === category) &&
-          item.name.toLowerCase().startsWith(searchTerm?.toLowerCase())
-      ).length === 0 && (
-        <p style={{ textAlign: "center", marginTop: "20px", color: "#808080" }}>
-          No items found 😕
-        </p>
+        (item) => {
+          const matchesCategory = category === "All" || item.category === category;
+          const searchLower = searchTerm?.toLowerCase().trim() || "";
+          const matchesSearch =
+            searchTerm.trim() === "" ||
+            item.name.toLowerCase().includes(searchLower) ||
+            item.description.toLowerCase().includes(searchLower) ||
+            item.category.toLowerCase().includes(searchLower);
+          return matchesCategory && matchesSearch;
+        }
+      ).length === 0 && searchTerm.trim() !== "" && (
+        <div style={{ textAlign: "center", marginTop: "40px", padding: "20px" }}>
+          <p style={{ fontSize: "1.2rem", color: "#666", marginBottom: "10px" }}>
+            😕 No items found for "{searchTerm}"
+          </p>
+          <p style={{ fontSize: "0.95rem", color: "#999" }}>
+            Try searching with different keywords
+          </p>
+        </div>
       )}
     </div>
   );

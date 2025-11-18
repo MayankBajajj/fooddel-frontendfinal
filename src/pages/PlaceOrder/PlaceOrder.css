@@ -41,6 +41,35 @@
   box-shadow: 0 0 5px rgba(255, 99, 71, 0.4);
 }
 
+/* Location note label */
+.location-note {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 600;
+  margin: 10px 0 5px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Read-only fields for fixed location */
+.readonly-field {
+  background: #f0f0f0 !important;
+  color: #666 !important;
+  cursor: not-allowed !important;
+  border: 1px solid #e0e0e0 !important;
+  font-weight: 600 !important;
+}
+
+.readonly-field:focus {
+  border-color: #e0e0e0 !important;
+  box-shadow: none !important;
+}
+
+.readonly-field:hover {
+  background: #e8e8e8 !important;
+}
+
 .mutli-fields,
 .multi-fields {
   display: flex;
@@ -81,20 +110,179 @@
 
 .place-order-right button {
   width: 100%;
-  background: #ff6347;
+  background: linear-gradient(135deg, #ff6347, #ff4500);
   color: white;
   border: none;
-  padding: 14px;
+  padding: 16px;
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.3s ease;
   margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(255, 99, 71, 0.3);
 }
 
 .place-order-right button:hover {
-  background: #ff3e1d;
+  background: linear-gradient(135deg, #ff4500, #ff6347);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 99, 71, 0.4);
+}
+
+.place-order-right button:disabled {
+  background: #d3d3d3;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.place-order-right button.processing {
+  background: linear-gradient(135deg, #ffa500, #ff8c00);
+  cursor: wait;
+}
+
+/* Payment Method Selection */
+.payment-method-selection {
+  margin: 25px 0;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+}
+
+.payment-method-selection h3 {
+  font-size: 1.1rem;
+  color: #333;
+  margin: 0 0 15px 0;
+  font-weight: 600;
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.payment-option:hover {
+  border-color: #ff6347;
+  box-shadow: 0 4px 12px rgba(255, 99, 71, 0.15);
+}
+
+.payment-option.selected {
+  border-color: #ff6347;
+  background: #fff8f5;
+  box-shadow: 0 4px 12px rgba(255, 99, 71, 0.2);
+}
+
+.payment-option input[type="radio"] {
+  margin-right: 15px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #ff6347;
+}
+
+.option-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+}
+
+.option-icon {
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.payment-option.selected .option-icon {
+  background: #ff6347;
+}
+
+.option-title {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.option-desc {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0;
+}
+
+/* Payment Info */
+.payment-info {
+  margin-top: 20px;
+  text-align: center;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid;
+}
+
+.payment-info p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+}
+
+.demo-badge,
+.cod-badge {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.demo-badge {
+  color: #ff6347;
+}
+
+.payment-info:has(.demo-badge) {
+  background: #fff3cd;
+  border-color: #ffc107;
+}
+
+.payment-info:has(.demo-badge) .payment-note {
+  color: #666;
+}
+
+.cod-badge {
+  color: #28a745;
+}
+
+.payment-info:has(.cod-badge) {
+  background: #d4edda;
+  border-color: #28a745;
+}
+
+.payment-info:has(.cod-badge) .payment-note {
+  color: #155724;
+}
+
+.payment-note {
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+.payment-methods {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.85rem;
 }
 
 /* ---------- RESPONSIVE ---------- */
@@ -131,7 +319,61 @@
   }
 
   .place-order-right button {
-    padding: 12px;
+    padding: 14px;
     font-size: 0.95rem;
+  }
+  
+  .payment-method-selection {
+    padding: 15px;
+    margin: 20px 0;
+  }
+  
+  .payment-method-selection h3 {
+    font-size: 0.95rem;
+  }
+  
+  .payment-option {
+    padding: 12px;
+  }
+  
+  .payment-option input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 12px;
+  }
+  
+  .option-content {
+    gap: 12px;
+  }
+  
+  .option-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 1.6rem;
+  }
+  
+  .option-title {
+    font-size: 0.9rem;
+  }
+  
+  .option-desc {
+    font-size: 0.75rem;
+  }
+  
+  .payment-info {
+    padding: 12px;
+  }
+  
+  .payment-info p {
+    font-size: 0.85rem;
+  }
+  
+  .demo-badge,
+  .cod-badge {
+    font-size: 0.9rem;
+  }
+  
+  .payment-note {
+    font-size: 0.8rem;
   }
 }

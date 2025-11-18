@@ -1,8 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ===== General Responsive ===== */
+@media (max-width: 768px) {
+  #root {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  #root {
+    padding: 0.5rem;
+  }
 }
 
 .logo {

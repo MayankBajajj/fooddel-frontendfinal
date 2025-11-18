@@ -1,63 +1,120 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Delivery.css";
 
 const DeliveryHistory = () => {
-  const history = [
+  const [history] = useState([
     {
       id: 98,
-      date: "Oct 25, 2025",
+      date: "Nov 8, 2025",
+      time: "2:30 PM",
       customer: "Aditi Mehta",
-      pickup: "ThaparEATS Kitchen",
-      delivery: "Hostel J-Block",
+      items: ["Chole Bhature"],
+      pickup: "ThaparEATS Kitchen, Block A",
+      delivery: "Hostel J-Block, Room 301",
       earnings: "₹45",
+      distance: "1.5 km",
     },
     {
       id: 99,
-      date: "Oct 26, 2025",
+      date: "Nov 9, 2025",
+      time: "1:15 PM",
       customer: "Rohit Khanna",
-      pickup: "ThaparEATS Kitchen",
-      delivery: "Hostel C-Block",
+      items: ["Veg Thali", "Lassi"],
+      pickup: "ThaparEATS Kitchen, Block B",
+      delivery: "Hostel C-Block, Room 102",
       earnings: "₹50",
+      distance: "0.9 km",
     },
     {
       id: 100,
-      date: "Oct 27, 2025",
+      date: "Nov 10, 2025",
+      time: "7:45 PM",
       customer: "Sanya Kapoor",
-      pickup: "ThaparEATS Kitchen",
-      delivery: "Hostel F-Block",
+      items: ["Pasta", "Garlic Bread"],
+      pickup: "ThaparEATS Kitchen, Block A",
+      delivery: "Hostel F-Block, Room 205",
       earnings: "₹55",
+      distance: "1.8 km",
     },
-  ];
+  ]);
+
+  const totalEarnings = history.reduce((sum, item) => sum + parseInt(item.earnings.replace('₹', '')), 0);
 
   return (
     <div className="delivery-history">
-      <h2>📦 Delivery History</h2>
-      <p>Here you can view your completed deliveries and earnings summary.</p>
+      {/* Summary Card */}
+      <div className="history-summary">
+        <div className="summary-item">
+          <div className="summary-icon">📦</div>
+          <div>
+            <h3>{history.length}</h3>
+            <p>Total Deliveries</p>
+          </div>
+        </div>
+        <div className="summary-item">
+          <div className="summary-icon">💵</div>
+          <div>
+            <h3>₹{totalEarnings}</h3>
+            <p>Total Earned</p>
+          </div>
+        </div>
+        <div className="summary-item">
+          <div className="summary-icon">⭐</div>
+          <div>
+            <h3>4.8</h3>
+            <p>Average Rating</p>
+          </div>
+        </div>
+      </div>
 
-      <table className="history-table">
-        <thead>
-          <tr>
-            <th>Order ID</th>
-            <th>Date</th>
-            <th>Customer</th>
-            <th>Pickup</th>
-            <th>Delivery</th>
-            <th>Earnings</th>
-          </tr>
-        </thead>
-        <tbody>
+      {/* History Section */}
+      <div className="section-container-delivery">
+        <div className="section-header-delivery">
+          <h2>📦 Delivery History</h2>
+          <span className="history-count">{history.length} completed</span>
+        </div>
+
+        <div className="history-list">
           {history.map((item) => (
-            <tr key={item.id}>
-              <td>#{item.id}</td>
-              <td>{item.date}</td>
-              <td>{item.customer}</td>
-              <td>{item.pickup}</td>
-              <td>{item.delivery}</td>
-              <td>{item.earnings}</td>
-            </tr>
+            <div key={item.id} className="history-card">
+              <div className="history-card-header">
+                <div>
+                  <span className="history-order-id">Order #{item.id}</span>
+                  <span className="history-date">📅 {item.date} • {item.time}</span>
+                </div>
+                <span className="history-earnings">{item.earnings}</span>
+              </div>
+
+              <div className="history-details">
+                <div className="history-row">
+                  <span className="history-label">👤 Customer:</span>
+                  <span>{item.customer}</span>
+                </div>
+                <div className="history-row">
+                  <span className="history-label">🍽️ Items:</span>
+                  <span>{item.items.join(", ")}</span>
+                </div>
+                <div className="history-row">
+                  <span className="history-label">📍 From:</span>
+                  <span>{item.pickup}</span>
+                </div>
+                <div className="history-row">
+                  <span className="history-label">🏠 To:</span>
+                  <span>{item.delivery}</span>
+                </div>
+                <div className="history-row">
+                  <span className="history-label">📏 Distance:</span>
+                  <span>{item.distance}</span>
+                </div>
+              </div>
+
+              <div className="history-status">
+                <span className="completed-badge">✅ Delivered</span>
+              </div>
+            </div>
           ))}
-        </tbody>
-      </table>
+        </div>
+      </div>
     </div>
   );
 };

@@ -13,7 +13,7 @@ const DeliveryLogin = () => {
     setError("");
 
     try {
-      const res = await fetch("https://food-del-backend-eg8o.onrender.com/api/delivery/login", {
+      const res = await fetch("https://fooddel-backendfinal.onrender.com/api/delivery/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
