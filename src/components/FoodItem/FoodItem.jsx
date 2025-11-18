@@ -11,13 +11,7 @@ const FoodItem = ({ id, name, description, price, image, homeMakerId }) => {
 
   const BASE_URL = "https://fooddel-backendfinal.onrender.com";
 
-  const imageUrl = image.startsWith("/images/")
-    ? `${BASE_URL}${image}`
-    : image.startsWith("images/")
-    ? `${BASE_URL}/${image}`
-    : image.startsWith("http")
-    ? image
-    : `${BASE_URL}/images/${image}`;
+ const imageUrl = `${BASE_URL}/images/${image}`;
 
   return (
     <div className="food-item">
